@@ -8,5 +8,5 @@ Personalized AI Agents: Users can configure agents with specific personality tra
 Content Generation: Based on user prompts, agents generate engaging and tailored content suitable for various social media platforms and professional needs.
 
 ## Technologies Used
-Backend: Java Spring
-Frontend : React
+- Backend: Java Spring
+- Frontend : React
