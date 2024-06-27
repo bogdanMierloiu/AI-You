@@ -9,7 +9,7 @@ Configuration Flexibility: Customize AI agents with specific personality traits,
 User-Driven Input: Provide detailed personal data or specific information to generate contextually accurate and engaging content.
 Diverse Applications: Suitable for social media, professional communications, and other personalized content needs.
 
-Technical Highlights
+# Technical Highlights
 
 1. OpenAI API Integration:
 State-of-the-Art AI: Utilizes OpenAI's advanced API for high-quality natural language processing.
