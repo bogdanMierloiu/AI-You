@@ -16,15 +16,4 @@ public class AgentService {
                 .ussage("LinkedIn post")
                 .build();
     }
-
-    public static Agent getGigiAgent() {
-        return Agent.builder()
-                .name("Gigi Agent")
-                .expertise("football")
-                .personality("friendly")
-                .language("english")
-                .tone("formal")
-                .ussage("Instagram post")
-                .build();
-    }
 }

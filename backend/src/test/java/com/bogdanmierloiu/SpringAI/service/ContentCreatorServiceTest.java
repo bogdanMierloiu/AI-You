@@ -23,17 +23,11 @@ class ContentCreatorServiceTest {
     @Autowired
     private ContentCreatorService contentCreatorService;
 
-    @Autowired
-    OpenAiChatProperties openAiChatProperties;
-
-    @Value("classpath:articles/generative-ai.txt")
-    private Resource generativeAiArticleResource;
-
     @Test
     void generateContent() {
-        String promptRequest = "Spring Security username+password authentication from REACT APP";
-
+        String promptRequest = "Embedding information with OpenAI API";
         ContentResponse generatedContent = contentCreatorService.generateContent(promptRequest);
         log.info("Generated content: {}", generatedContent);
+        assert generatedContent != null;
     }
 }

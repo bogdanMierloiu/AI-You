@@ -30,10 +30,10 @@ public class ContentCreatorService {
         OpenAiChatOptions openAiChatOptions = new OpenAiChatOptions.Builder(openAiChatProperties.getOptions())
 //                .withTemperature(0.7f)
                 .withModel("gpt-4o")
+                .withMaxTokens(100)
                 .build();
 
         Agent agent = AgentService.getDefaultAgent();
-//        Agent agent = AgentService.getGigiAgent();
         String contentCreatorPrompt = DefaultPrompts.getContentCreatorPrompt(agent, promptRequest);
         PromptTemplate promptTemplate = new PromptTemplate(contentCreatorPrompt);
 

@@ -4,7 +4,7 @@ spring:
     name: SpringAI
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/spring_ai
+    url: jdbc:postgresql://localhost:5432/ai_you
     driver-class-name: org.postgresql.Driver
     username: ${spring.datasource.username}
     password: ${spring.datasource.password}
@@ -23,7 +23,7 @@ spring:
 
   ai:
     openai:
-      api-key: ${OPENAI_API_KEY}
+      api-key: ${OPENAI_API_KEY:secret-key}
 #      chat:
 #        options:
 #          temperature: 0.2
@@ -31,4 +31,4 @@ spring:
 #          max-tokens: 100
 
   jwt:
-    secret: ${JWT_SECRET}
+    secret: ${JWT_SECRET:This_is_a_secret_key_with_length_greater_than_256_bits}
