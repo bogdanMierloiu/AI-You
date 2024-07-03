@@ -26,6 +26,7 @@ replay_pid*
 
 # Maven and Spring
 # Maven wrapper
+backend/milvus/volumes
 backend/.mvn/wrapper/
 backend/.idea
 backend/.vscode
