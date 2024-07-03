@@ -20,15 +20,23 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: none
-
   ai:
     openai:
       api-key: ${OPENAI_API_KEY:secret-key}
-#      chat:
-#        options:
-#          temperature: 0.2
-#          model: "gpt-3.5-turbo"
-#          max-tokens: 100
-
+      embedding:
+        options:
+          model: "text-embedding-3-small"
+    vectorstore:
+      milvus:
+        client:
+          host: "localhost"
+          port: 19530
+          username: "root"
+          password: "milvus"
+        database-name: "default"
+        collection-name: "vectorstore"
+        embedding-dimension: 1536
+        index-type: IVF_FLAT
+        metric-type: COSINE
   jwt:
     secret: ${JWT_SECRET:This_is_a_secret_key_with_length_greater_than_256_bits}

@@ -2,6 +2,7 @@ package com.bogdanmierloiu.SpringAI.service;
 
 import com.bogdanmierloiu.SpringAI.dto.OpenAiResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.ai.embedding.EmbeddingClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -14,10 +15,12 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-public class OpenAiService {
+public class OpenAiEmbeddingsService {
 
     @Value("${spring.ai.openai.api-key}")
     private String apiKey;
+
+    private final EmbeddingClient embeddingClient;
 
     private final RestTemplate restTemplate = new RestTemplate();
 
@@ -27,7 +30,7 @@ public class OpenAiService {
         headers.set("Authorization", "Bearer " + apiKey);
         headers.set("Content-Type", "application/json");
 
-        String body = "{\"input\":\"" + text + "\", \"model\":\"text-embedding-ada-002\"}";
+        String body = "{\"input\":\"" + text + "\", \"model\":\"text-embedding-3-small\"}";
         HttpEntity<String> entity = new HttpEntity<>(body, headers);
 
         ResponseEntity<OpenAiResponse> response = restTemplate.exchange(url, HttpMethod.POST, entity, OpenAiResponse.class);
