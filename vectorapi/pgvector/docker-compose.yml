@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: ankane/pgvector:v0.5.1
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=vector_db
+    ports:
+      - '5433:5432'
+    healthcheck:
+      test: "pg_isready -U postgres -d vector_db"
+      interval: 2s
+      timeout: 20s
+      retries: 10

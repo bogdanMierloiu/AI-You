@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: VectorAPI
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/vector_db
+    driver-class-name: org.postgresql.Driver
+    username: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY:secret-key}
+      chat:
+        options:
+          model: "gpt-4o"
+      embedding:
+        options:
+          model: "text-embedding-3-small"
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        distance-type: cosine_distance
+        dimensions: 1536
+server:
+  port: 8081

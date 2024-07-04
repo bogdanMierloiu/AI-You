@@ -26,6 +26,7 @@ replay_pid*
 
 # Maven and Spring
 # Maven wrapper
+backend/milvus/volumes
 backend/.mvn/wrapper/
 backend/.idea
 backend/.vscode
@@ -39,6 +40,20 @@ backend/out/
 backend/generated/
 backend/build/
 
+
+vectorapi/.mvn/wrapper/
+vectorapi/.idea
+vectorapi/.vscode
+vectorapi/mvnw
+vectorapi/mvnw.cmd
+vectorapi/.mvn/
+# Maven and Spring generated files
+vectorapi/target/
+vectorapi/logs/
+vectorapi/out/
+vectorapi/generated/
+vectorapi/build/
+
 # Node.js / React
 # Dependencies
 frontend/node_modules/
@@ -51,7 +66,6 @@ frontend/.pnp.js
 frontend/coverage
 
 # Build directories
-backend/.idea
 frontend/build
 backend/build
 

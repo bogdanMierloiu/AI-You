@@ -1,13 +1,12 @@
 spring:
-
   application:
     name: SpringAI
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/ai_you
-    driver-class-name: org.postgresql.Driver
-    username: ${spring.datasource.username}
-    password: ${spring.datasource.password}
+      url: jdbc:postgresql://localhost:5432/ai_you
+      driver-class-name: org.postgresql.Driver
+      username: ${spring.datasource.username}
+      password: ${spring.datasource.password}
 
   liquibase:
     enabled: true
@@ -20,15 +19,14 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: none
-
   ai:
     openai:
       api-key: ${OPENAI_API_KEY:secret-key}
-#      chat:
-#        options:
-#          temperature: 0.2
-#          model: "gpt-3.5-turbo"
-#          max-tokens: 100
-
+      chat:
+        options:
+          model: "gpt-4o"
+      embedding:
+        options:
+          model: "text-embedding-3-small"
   jwt:
     secret: ${JWT_SECRET:This_is_a_secret_key_with_length_greater_than_256_bits}
