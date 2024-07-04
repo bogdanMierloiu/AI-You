@@ -2,7 +2,6 @@ package com.bogdanmierloiu.VectorAPI.service;
 
 import com.bogdanmierloiu.SpringAI.VectorAPI.dto.ContentResponse;
 import com.bogdanmierloiu.SpringAI.VectorAPI.service.ContentCreatorService;
-import com.bogdanmierloiu.SpringAI.VectorAPI.service.OpenAiEmbeddingsService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -20,9 +19,6 @@ class ContentCreatorServiceTest {
     @Autowired
     private ContentCreatorService contentCreatorService;
 
-
-    @Autowired
-    private OpenAiEmbeddingsService openAiEmbeddingsService;
 
     @Test
     void generateContent() {

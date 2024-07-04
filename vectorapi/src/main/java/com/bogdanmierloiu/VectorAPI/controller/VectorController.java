@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,8 +23,8 @@ public class VectorController {
     }
 
     @GetMapping
-    public ResponseEntity<List<String>> search(@RequestParam String query) {
-        List<String> searchResult = vectorStoreService.search(query);
+    public ResponseEntity<List<String>> search(@RequestParam String query, @RequestParam Long agentId) {
+        List<String> searchResult = vectorStoreService.search(query, agentId);
         return ResponseEntity.ok(searchResult);
     }
 

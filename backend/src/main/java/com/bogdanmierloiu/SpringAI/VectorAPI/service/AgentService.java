@@ -8,6 +8,7 @@ public class AgentService {
 
     public static Agent getDefaultAgent() {
         return Agent.builder()
+                .id(1L)
                 .name("Default Agent")
                 .expertise("programming")
                 .personality("funny")
