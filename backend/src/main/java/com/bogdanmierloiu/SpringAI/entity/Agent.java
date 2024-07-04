@@ -44,4 +44,18 @@ public class Agent {
     //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "owner_id", nullable = false)
 //    private Object owner;
+
+
+    @Override
+    public String toString() {
+        return "Agent{" +
+                "name='" + name + '\'' +
+                ", personality='" + personality + '\'' +
+                ", language='" + language + '\'' +
+                ", expertise='" + expertise + '\'' +
+                ", tone='" + tone + '\'' +
+                ", format='" + format + '\'' +
+                ", ussage='" + ussage + '\'' +
+                '}';
+    }
 }

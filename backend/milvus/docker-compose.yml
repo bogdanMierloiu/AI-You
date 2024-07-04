@@ -48,6 +48,7 @@ services:
       MILVUS_USERNAME: root
       MILVUS_PASSWORD: milvus
       MILVUS_COLLECTION_NAME: vectorstore
+      SERVER_RATE_LIMIT_ENABLED: "false"
     volumes:
       - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/milvus:/var/lib/milvus
     healthcheck:

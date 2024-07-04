@@ -35,6 +35,19 @@ class MilvusServiceTest {
     }
 
     @Test
+    void addInVectorStore() {
+        String content = "Hello, world!";
+        String textToEmbedAndAdd = "Hello, Milvus!";
+        milvusService.addInVectorStore(content, textToEmbedAndAdd);
+    }
+
+    @Test
+    void addWithMilvusClient() throws Exception {
+        String text = "Hello";
+        milvusService.addWithMilvusClient(text);
+    }
+
+    @Test
     void embedAndSave() {
         String text = "Hello";
         float[] embedding = openAiEmbeddingsService.getEmbedding(text);
