@@ -82,7 +82,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # IDEs and Editors
-.idea/
+.idea
 .vscode/
 *.swp
 *.swo
