@@ -1,7 +1,7 @@
-package com.bogdanmierloiu.SpringAI.VectorAPI.config;
+package com.bogdanmierloiu.SpringAI.config;
 
-import com.bogdanmierloiu.SpringAI.VectorAPI.entity.User;
-import com.bogdanmierloiu.SpringAI.VectorAPI.repo.UserRepo;
+import com.bogdanmierloiu.SpringAI.entity.User;
+import com.bogdanmierloiu.SpringAI.repo.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.BadCredentialsException;

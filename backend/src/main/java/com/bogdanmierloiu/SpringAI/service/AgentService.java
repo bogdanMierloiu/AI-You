@@ -1,7 +1,7 @@
-package com.bogdanmierloiu.SpringAI.VectorAPI.service;
+package com.bogdanmierloiu.SpringAI.service;
 
-import com.bogdanmierloiu.SpringAI.VectorAPI.entity.Agent;
-import com.bogdanmierloiu.SpringAI.VectorAPI.repo.AgentRepo;
+import com.bogdanmierloiu.SpringAI.entity.Agent;
+import com.bogdanmierloiu.SpringAI.repo.AgentRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

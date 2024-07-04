@@ -1,11 +1,11 @@
-package com.bogdanmierloiu.SpringAI.VectorAPI.controller;
+package com.bogdanmierloiu.SpringAI.controller;
 
-import com.bogdanmierloiu.SpringAI.VectorAPI.config.JwtProvider;
-import com.bogdanmierloiu.SpringAI.VectorAPI.config.UserDetailsServiceConfig;
-import com.bogdanmierloiu.SpringAI.VectorAPI.dto.AuthResponse;
-import com.bogdanmierloiu.SpringAI.VectorAPI.dto.LoginRequest;
-import com.bogdanmierloiu.SpringAI.VectorAPI.entity.User;
-import com.bogdanmierloiu.SpringAI.VectorAPI.service.UserService;
+import com.bogdanmierloiu.SpringAI.config.JwtProvider;
+import com.bogdanmierloiu.SpringAI.config.UserDetailsServiceConfig;
+import com.bogdanmierloiu.SpringAI.dto.AuthResponse;
+import com.bogdanmierloiu.SpringAI.dto.LoginRequest;
+import com.bogdanmierloiu.SpringAI.entity.User;
+import com.bogdanmierloiu.SpringAI.service.UserService;
 import groovy.util.logging.Slf4j;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;

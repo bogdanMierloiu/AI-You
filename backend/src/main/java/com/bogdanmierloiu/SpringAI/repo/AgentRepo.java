@@ -1,6 +1,6 @@
-package com.bogdanmierloiu.SpringAI.VectorAPI.repo;
+package com.bogdanmierloiu.SpringAI.repo;
 
-import com.bogdanmierloiu.SpringAI.VectorAPI.entity.Agent;
+import com.bogdanmierloiu.SpringAI.entity.Agent;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

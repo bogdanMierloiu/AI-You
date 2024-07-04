@@ -1,8 +1,8 @@
-package com.bogdanmierloiu.SpringAI.VectorAPI.service;
+package com.bogdanmierloiu.SpringAI.service;
 
-import com.bogdanmierloiu.SpringAI.VectorAPI.entity.User;
-import com.bogdanmierloiu.SpringAI.VectorAPI.repo.RoleRepo;
-import com.bogdanmierloiu.SpringAI.VectorAPI.repo.UserRepo;
+import com.bogdanmierloiu.SpringAI.entity.User;
+import com.bogdanmierloiu.SpringAI.repo.RoleRepo;
+import com.bogdanmierloiu.SpringAI.repo.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;

@@ -1,7 +1,7 @@
-package com.bogdanmierloiu.SpringAI.VectorAPI.controller;
+package com.bogdanmierloiu.SpringAI.controller;
 
-import com.bogdanmierloiu.SpringAI.VectorAPI.entity.User;
-import com.bogdanmierloiu.SpringAI.VectorAPI.repo.UserRepo;
+import com.bogdanmierloiu.SpringAI.entity.User;
+import com.bogdanmierloiu.SpringAI.repo.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;

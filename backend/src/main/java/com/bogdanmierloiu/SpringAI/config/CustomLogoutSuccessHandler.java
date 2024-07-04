@@ -1,4 +1,4 @@
-package com.bogdanmierloiu.SpringAI.VectorAPI.config;
+package com.bogdanmierloiu.SpringAI.config;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

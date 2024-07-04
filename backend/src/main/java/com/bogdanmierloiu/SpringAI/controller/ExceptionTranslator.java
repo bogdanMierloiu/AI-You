@@ -1,4 +1,4 @@
-package com.bogdanmierloiu.SpringAI.VectorAPI.controller;
+package com.bogdanmierloiu.SpringAI.controller;
 
 import org.springframework.ai.openai.api.common.OpenAiApiException;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.bogdanmierloiu.SpringAI.VectorAPI.entity;
+package com.bogdanmierloiu.SpringAI.entity;
 
 
 import io.swagger.v3.oas.annotations.media.Schema;

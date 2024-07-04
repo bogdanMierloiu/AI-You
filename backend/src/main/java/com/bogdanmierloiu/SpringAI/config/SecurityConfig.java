@@ -1,4 +1,4 @@
-package com.bogdanmierloiu.SpringAI.VectorAPI.config;
+package com.bogdanmierloiu.SpringAI.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

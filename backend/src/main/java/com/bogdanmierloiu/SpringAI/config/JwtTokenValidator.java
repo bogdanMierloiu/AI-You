@@ -1,4 +1,4 @@
-package com.bogdanmierloiu.SpringAI.VectorAPI.config;
+package com.bogdanmierloiu.SpringAI.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

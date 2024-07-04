@@ -1,6 +1,6 @@
 package com.bogdanmierloiu.SpringAI.service;
 
-import com.bogdanmierloiu.SpringAI.VectorAPI.entity.Agent;
+import com.bogdanmierloiu.SpringAI.entity.Agent;
 import com.bogdanmierloiu.SpringAI.dto.ContentResponse;
 import com.bogdanmierloiu.SpringAI.prompts.DefaultPrompts;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +33,7 @@ public class ContentCreatorService {
                 .withMaxTokens(100)
                 .build();
 
-        Agent agent = com.bogdanmierloiu.SpringAI.VectorAPI.service.AgentService.getDefaultAgent();
+        Agent agent = com.bogdanmierloiu.SpringAI.service.AgentService.getDefaultAgent();
         List<String> similaritySearchResults = List.of(
                 "Result 1: Children are amazing learners",
                 "Result 2: Advantages of pgvector for similarity search are that it is fast and accurate"

@@ -1,4 +1,4 @@
-package com.bogdanmierloiu.SpringAI.VectorAPI.entity;
+package com.bogdanmierloiu.SpringAI.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

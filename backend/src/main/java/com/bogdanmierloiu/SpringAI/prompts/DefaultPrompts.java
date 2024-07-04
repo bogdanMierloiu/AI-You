@@ -1,6 +1,6 @@
 package com.bogdanmierloiu.SpringAI.prompts;
 
-import com.bogdanmierloiu.SpringAI.VectorAPI.entity.Agent;
+import com.bogdanmierloiu.SpringAI.entity.Agent;
 
 import java.util.List;
 
