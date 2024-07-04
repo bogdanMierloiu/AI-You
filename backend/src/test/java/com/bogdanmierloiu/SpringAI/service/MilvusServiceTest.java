@@ -45,6 +45,7 @@ class MilvusServiceTest {
     void addWithMilvusClient() throws Exception {
         String text = "Hello";
         milvusService.addWithMilvusClient(text);
+        milvusService.searchWithMilvusClient(text);
     }
 
     @Test

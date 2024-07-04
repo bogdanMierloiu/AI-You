@@ -86,5 +86,4 @@ public class ContentCreatorService {
         return chatClient.call(promptToSend);
     }
 
-
 }

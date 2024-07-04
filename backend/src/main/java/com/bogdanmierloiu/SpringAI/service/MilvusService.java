@@ -4,16 +4,26 @@ import io.milvus.client.MilvusClient;
 import io.milvus.common.clientenum.ConsistencyLevelEnum;
 import io.milvus.grpc.DataType;
 import io.milvus.grpc.MutationResult;
+import io.milvus.grpc.QueryResults;
+import io.milvus.param.IndexType;
+import io.milvus.param.MetricType;
 import io.milvus.param.R;
 import io.milvus.param.collection.CreateCollectionParam;
 import io.milvus.param.collection.DropCollectionParam;
 import io.milvus.param.collection.FieldType;
+import io.milvus.param.collection.LoadCollectionParam;
 import io.milvus.param.dml.InsertParam;
+import io.milvus.param.dml.QueryParam;
+import io.milvus.param.index.CreateIndexParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.ai.chat.ChatClient;
+import org.springframework.ai.chat.ChatResponse;
+import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.document.Document;
-import org.springframework.ai.embedding.EmbeddingClient;
 import org.springframework.ai.vectorstore.SearchRequest;
+import org.springframework.ai.vectorstore.SimpleVectorStore;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.stereotype.Service;
 
@@ -27,11 +37,10 @@ import java.util.UUID;
 @Slf4j
 public class MilvusService {
 
-
     private final VectorStore vectorStore;
     private final MilvusClient milvusClient;
     private final OpenAiEmbeddingsService openAiEmbeddingsService;
-    private final EmbeddingClient embeddingClient;
+    private final ChatClient chatClient;
 
     public void saveEmbeddings(String content, List<float[]> embeddings) {
         List<Document> documents = embeddings.stream()
@@ -60,7 +69,6 @@ public class MilvusService {
     }
 
     public void addWithMilvusClient(String text) throws Exception {
-
         FieldType idField = FieldType.newBuilder()
                 .withName("id")
                 .withDataType(DataType.Int64)
@@ -97,12 +105,18 @@ public class MilvusService {
                 .build();
         milvusClient.createCollection(createCollectionParam);
 
-        List<Float> embeddingList = openAiEmbeddingsService.getEmbeddingList(text);
-
-        InsertParam.Field idFieldInsert = InsertParam.Field.builder()
-                .name("id")
-                .values(List.of(0L))  // Assuming an ID, as it's auto-generated
+        CreateIndexParam createIndexParam = CreateIndexParam.newBuilder()
+                .withIndexName("default_agent_index")
+                .withCollectionName("default_agent")
+                .withDatabaseName("default")
+                .withFieldName("embedding")
+                .withIndexType(IndexType.IVF_FLAT)
+                .withMetricType(MetricType.COSINE)
                 .build();
+        createIndexParam.getExtraParam().put("nlist", "16384");
+        milvusClient.createIndex(createIndexParam);
+
+        List<Float> embeddingList = openAiEmbeddingsService.getEmbeddingList(text);
 
         InsertParam.Field embeddingField = InsertParam.Field.builder()
                 .name("embedding")
@@ -121,6 +135,42 @@ public class MilvusService {
                 .build();
         R<MutationResult> insert = milvusClient.insert(insertParam);
         log.info("Insert result: {}", insert);
+
+    }
+
+    public void searchWithMilvusClient(String text) throws Exception {
+        LoadCollectionParam loadCollectionParam = LoadCollectionParam.newBuilder()
+                .withCollectionName("default_agent")
+                .withDatabaseName("default")
+                .build();
+        milvusClient.loadCollection(loadCollectionParam);
+
+        // Obții vectorul de embedding pentru textul "Hello"
+        List<Float> embeddingList = openAiEmbeddingsService.getEmbeddingList(text);
+
+        QueryParam queryParam = QueryParam.newBuilder()
+                .withCollectionName("default_agent")
+                .withExpr(embeddingList.toString())
+                .withConsistencyLevel(ConsistencyLevelEnum.STRONG)
+                .build();
+        R<QueryResults> query = milvusClient.query(queryParam);
+        QueryResults data = query.getData();
+        log.info("Search result: {}", data);
+
+        ChatResponse chatResponse = analyzeSearchResponse(data);
+        log.info("Chat response: {}", chatResponse);
+
+    }
+
+
+    public ChatResponse analyzeSearchResponse(QueryResults searchResults) {
+
+        PromptTemplate promptTemplate = new PromptTemplate(
+                "Decode the search results: {search_results} and return me like String"
+        );
+        Prompt prompt = promptTemplate.create(Map.of("search_results", searchResults));
+        return chatClient.call(prompt);
+
     }
 
     public List<Document> similaritySearch(String query) {
