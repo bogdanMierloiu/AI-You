@@ -40,7 +40,7 @@ backend/out/
 backend/generated/
 backend/build/
 
-
+vectorapi/pgvector/pg_data
 vectorapi/.mvn/wrapper/
 vectorapi/.idea
 vectorapi/.vscode

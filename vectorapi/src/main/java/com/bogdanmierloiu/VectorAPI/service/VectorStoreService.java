@@ -5,10 +5,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
+import org.springframework.ai.vectorstore.filter.Filter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -16,10 +18,11 @@ public class VectorStoreService {
 
     private final VectorStore vectorStore;
 
-    public List<String> search(String query) {
+    public List<String> search(String query, Long agentId) {
         return vectorStore.similaritySearch(
-                SearchRequest.query(query)
-                        .withTopK(3))
+                        SearchRequest.query(query)
+                                .withTopK(3)
+                                .withFilterExpression("agentId == '" + agentId + "'"))
                 .stream()
                 .map(Document::getContent)
                 .toList();

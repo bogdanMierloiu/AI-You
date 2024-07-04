@@ -24,8 +24,6 @@ public class ContentCreatorService {
 
     private final ChatClient chatClient;
 
-    private final OpenAiEmbeddingsService openAiEmbeddingsService;
-
     private final OpenAiChatProperties openAiChatProperties;
 
     public ContentResponse generateContent(String promptRequest) {
@@ -48,7 +46,6 @@ public class ContentCreatorService {
 
         ChatResponse response = chatClient.call(promptToSend);
 
-
         return parser.parse(response.getResult().getOutput().getContent());
     }
 
@@ -63,7 +60,7 @@ public class ContentCreatorService {
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonString = objectMapper.writeValueAsString(agent.toString());
 
-        float[] embedding = openAiEmbeddingsService.getEmbedding(jsonString);
+        float[] embedding = null;
 
         PromptTemplate promptTemplate = new PromptTemplate("You are a helpful assistant, conversing with a user which needs help with a specific topic." +
                 "You will be provided with a set of documents, and you will extract the personality traits of the user, and provide them with the best possible answer." +
