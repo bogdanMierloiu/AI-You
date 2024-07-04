@@ -38,7 +38,7 @@ public class Agent {
 
     private String format;
 
-    private String ussage;
+    private String usage;
 
     //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "owner_id", nullable = false)
@@ -54,7 +54,7 @@ public class Agent {
                 ", expertise='" + expertise + '\'' +
                 ", tone='" + tone + '\'' +
                 ", format='" + format + '\'' +
-                ", ussage='" + ussage + '\'' +
+                ", ussage='" + usage + '\'' +
                 '}';
     }
 }

@@ -1,4 +1,4 @@
-package com.bogdanmierloiu.SpringAI.VectorAPI;
+package com.bogdanmierloiu.SpringAI;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

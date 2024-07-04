@@ -1,4 +1,4 @@
-package com.bogdanmierloiu.SpringAI.VectorAPI.dto;
+package com.bogdanmierloiu.SpringAI.dto;
 
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
