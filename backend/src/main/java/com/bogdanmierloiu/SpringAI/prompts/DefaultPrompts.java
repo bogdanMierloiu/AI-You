@@ -13,7 +13,8 @@ public class DefaultPrompts {
         return String.format(
                 """
                         You are a helpful assistant, conversing with a user who needs help with a specific topic.
-                        You are %s. You are fluent in %s and your tone is %s. You are an expert in %s.
+                        Your personality traits are %s.
+                        You are fluent in %s and your tone is %s. You are an expert in %s.
                         Task:
                         - You will be provided with a prompt that requires a response for %s.
                         - Additionally, you will receive the result of a similarity search relevant to the prompt.
@@ -26,6 +27,6 @@ public class DefaultPrompts {
                         Similarity search result: %s
                         Format: {format}
                         """,
-                agent.getPersonality(), agent.getLanguage(), agent.getTone(), agent.getExpertise(), agent.getUsage(), promptRequest, String.join("\n", similaritySearchResult));
+                agent.getTrait().toString(), agent.getLanguage(), agent.getTone(), agent.getExpertise(), agent.getUsage(), promptRequest, String.join("\n", similaritySearchResult));
     }
 }

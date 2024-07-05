@@ -105,7 +105,6 @@
         </insert>
     </changeSet>
 
-
     <changeSet id="add-address-and-nonce-to-user" author="bogdan.mierloiu">
         <preConditions onFail="MARK_RAN">
             <tableExists tableName="app_user"/>
@@ -115,5 +114,8 @@
             <column name="nonce" type="java.lang.Integer"/>
         </addColumn>
     </changeSet>
+
+    <include file="db/changelog/changelog-agent.xml"/>
+
 
 </databaseChangeLog>

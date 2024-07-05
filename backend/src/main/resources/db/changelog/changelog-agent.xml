@@ -1,0 +1,101 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <!-- Create traits table-->
+    <changeSet id="traits" author="bogdan.mierloiu">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="traits"/>
+            </not>
+        </preConditions>
+        <createTable tableName="traits">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="empathy" type="VARCHAR(128)"/>
+            <column name="reliability" type="VARCHAR(128)"/>
+            <column name="confidence" type="VARCHAR(128)"/>
+            <column name="attention_to_detail" type="VARCHAR(128)"/>
+            <column name="adaptability" type="VARCHAR(128)"/>
+            <column name="patience" type="VARCHAR(128)"/>
+            <column name="communication" type="VARCHAR(128)"/>
+            <column name="innovation" type="VARCHAR(128)"/>
+            <column name="resilience" type="VARCHAR(128)"/>
+            <column name="collaboration" type="VARCHAR(128)"/>
+        </createTable>
+    </changeSet>
+
+    <!--    Create agent table-->
+    <changeSet id="create_ai_agents_table" author="bogdan.mierloiu">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="ai_agents"/>
+            </not>
+        </preConditions>
+        <createTable tableName="ai_agents">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="language" type="VARCHAR(100)"/>
+            <column name="expertise" type="VARCHAR(255)"/>
+            <column name="tone" type="VARCHAR(50)"/>
+            <column name="usage" type="VARCHAR(255)"/>
+            <column name="trait_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint
+                baseTableName="ai_agents"
+                baseColumnNames="trait_id"
+                constraintName="fk_agent_trait"
+                referencedTableName="traits"
+                referencedColumnNames="id"
+                onDelete="CASCADE"
+                onUpdate="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="create user_agents table" author="bogdan.mierloiu">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="user_agents"/>
+            </not>
+        </preConditions>
+        <createTable tableName="user_agents">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="agent_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <!-- Index for user_id -->
+        <addForeignKeyConstraint baseTableName="user_agents"
+                                 baseColumnNames="user_id"
+                                 referencedTableName="app_user"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_user_agents_user_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"/>
+
+        <!-- Index for agent_id -->
+        <addForeignKeyConstraint baseTableName="user_agents"
+                                 baseColumnNames="agent_id"
+                                 referencedTableName="agents"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_user_agents_agent_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>

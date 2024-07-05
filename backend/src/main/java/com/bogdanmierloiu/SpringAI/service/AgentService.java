@@ -17,10 +17,10 @@ public class AgentService {
                 .id(1L)
                 .name("Default Agent")
                 .expertise("programming")
-                .personality("funny")
                 .language("english")
                 .tone("informal")
                 .usage("LinkedIn post")
+                .trait(null)
                 .build();
     }
 }

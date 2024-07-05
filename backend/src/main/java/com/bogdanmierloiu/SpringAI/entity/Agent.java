@@ -8,6 +8,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+import java.util.Objects;
+import java.util.Set;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -24,9 +28,6 @@ public class Agent {
     @Schema(description = "The name of the agent", example = "Magic Agent")
     private String name;
 
-    @Schema(description = "The personality of the agent", example = "Friendly, Helpful, Funny")
-    private String personality;
-
     @Schema(description = "The language of the agent", example = "English")
     private String language;
 
@@ -36,25 +37,39 @@ public class Agent {
     @Schema(description = "The tone of the agent", example = "Formal, Informal, Friendly")
     private String tone;
 
-    private String format;
-
     private String usage;
 
-    //    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "owner_id", nullable = false)
-//    private Object owner;
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
 
+    @JoinColumn(name = "trait_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Trait trait;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    private Set<User> owners;
 
     @Override
     public String toString() {
         return "Agent{" +
                 "name='" + name + '\'' +
-                ", personality='" + personality + '\'' +
                 ", language='" + language + '\'' +
                 ", expertise='" + expertise + '\'' +
                 ", tone='" + tone + '\'' +
-                ", format='" + format + '\'' +
-                ", ussage='" + usage + '\'' +
+                ", usage='" + usage + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Agent agent = (Agent) o;
+        return Objects.equals(id, agent.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }
