@@ -28,13 +28,13 @@
     </changeSet>
 
     <!--    Create agent table-->
-    <changeSet id="create_ai_agents_table" author="bogdan.mierloiu">
+    <changeSet id="create_agents_table" author="bogdan.mierloiu">
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists tableName="ai_agents"/>
+                <tableExists tableName="agents"/>
             </not>
         </preConditions>
-        <createTable tableName="ai_agents">
+        <createTable tableName="agents">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -53,7 +53,7 @@
             </column>
         </createTable>
         <addForeignKeyConstraint
-                baseTableName="ai_agents"
+                baseTableName="agents"
                 baseColumnNames="trait_id"
                 constraintName="fk_agent_trait"
                 referencedTableName="traits"
@@ -79,7 +79,6 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <!-- Index for user_id -->
         <addForeignKeyConstraint baseTableName="user_agents"
                                  baseColumnNames="user_id"
                                  referencedTableName="app_user"
@@ -87,8 +86,6 @@
                                  constraintName="fk_user_agents_user_id"
                                  onDelete="CASCADE"
                                  onUpdate="CASCADE"/>
-
-        <!-- Index for agent_id -->
         <addForeignKeyConstraint baseTableName="user_agents"
                                  baseColumnNames="agent_id"
                                  referencedTableName="agents"
