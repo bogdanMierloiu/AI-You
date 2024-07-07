@@ -13,14 +13,7 @@ function WelcomeDashboard() {
     }; 
 
     const handleProfile = () => {
-        axios.get('http://localhost:8080/api/profile')
-            .then(response => {
-                console.log(response.data);
-                history('/profile'); // Redirecționează utilizatorul la pagina de profil după ce primești răspunsul
-            })
-            .catch(error => {
-                console.error('There was an error fetching the profile!', error);
-            });
+        history('/profile/profilepage');
     };
 
 	return ( 

@@ -13,11 +13,13 @@ public class AgentMapper {
 
     public static AgentDto mapToAgentDto(Agent agent) {
         return AgentDto.builder()
+                .uuid(agent.getUuid())
                 .name(agent.getName())
                 .language(agent.getLanguage())
                 .expertise(agent.getExpertise())
                 .tone(agent.getTone())
                 .usage(agent.getUsage())
+                .createdAt(agent.getCreatedAt())
                 .traits(mapToTraitDto(agent.getTrait()))
                 .build();
     }

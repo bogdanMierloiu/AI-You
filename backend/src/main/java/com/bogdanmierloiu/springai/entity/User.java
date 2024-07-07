@@ -102,8 +102,12 @@ public class User implements UserDetails, CredentialsContainer {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public Role getRole() {
+        return role;
+    }
+
+    public Set<Agent> getAgents() {
+        return agents;
     }
 
     public Integer getNonce() {

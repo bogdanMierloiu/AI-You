@@ -16,7 +16,7 @@ public class VectorStoreService {
 
     private final VectorStore vectorStore;
 
-    public List<String> search(String query, Long agentId) {
+    public List<String> search(String query, String agentId) {
         return vectorStore.similaritySearch(
                         SearchRequest.query(query)
                                 .withTopK(3)

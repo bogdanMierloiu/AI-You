@@ -22,7 +22,7 @@ public class VectorController {
     }
 
     @GetMapping
-    public ResponseEntity<List<String>> search(@RequestParam String query, @RequestParam Long agentId) {
+    public ResponseEntity<List<String>> search(@RequestParam String query, @RequestParam String agentId) {
         List<String> searchResult = vectorStoreService.search(query, agentId);
         return ResponseEntity.ok(searchResult);
     }

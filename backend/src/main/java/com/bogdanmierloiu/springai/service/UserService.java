@@ -1,6 +1,9 @@
 package com.bogdanmierloiu.springai.service;
 
+import com.bogdanmierloiu.springai.dto.UserDto;
+import com.bogdanmierloiu.springai.entity.Agent;
 import com.bogdanmierloiu.springai.entity.User;
+import com.bogdanmierloiu.springai.mapper.UserMapper;
 import com.bogdanmierloiu.springai.repo.RoleRepo;
 import com.bogdanmierloiu.springai.repo.UserRepo;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 import java.util.Random;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +23,12 @@ public class UserService {
     private final UserRepo userRepo;
     private final RoleRepo roleRepo;
     private final Random random;
+
+    @Transactional
+    public UserDto getUserProfile() {
+        User authenticatedUser = getAuthenticatedUser();
+        return UserMapper.mapToUserDto(authenticatedUser);
+    }
 
 
     @Transactional(isolation = Isolation.REPEATABLE_READ)
@@ -33,10 +43,13 @@ public class UserService {
     }
 
     private User saveUserFromAddress(String address) {
+        String firstPart = address.substring(0, 5);
+        String lastPart = address.substring(address.length() - 5);
         return userRepo.save(User.builder()
                 .role(roleRepo.findByName("MEMBER"))
                 .address(address)
                 .nonce(generateNonce())
+                .email(firstPart + "...." + lastPart)
                 .build());
     }
 

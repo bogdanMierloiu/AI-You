@@ -1,0 +1,35 @@
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  .profile-left {
+    flex: 1;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+  }
+  
+  .profile-right {
+    flex: 2;
+    padding: 10px;
+  }
+  
+  .agent-carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .agent-details {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    margin: 10px;
+  }
+  

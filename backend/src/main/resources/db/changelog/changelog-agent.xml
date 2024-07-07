@@ -95,4 +95,18 @@
                                  onUpdate="CASCADE"/>
     </changeSet>
 
+    <!-- Add uuid column for agents-->
+    <changeSet id="add-uuid-column-in-agents-table" author="bogdan.mierloiu">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="agents" columnName="uuid"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="agents">
+            <column name="uuid" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

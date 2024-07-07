@@ -1,7 +1,9 @@
 package com.bogdanmierloiu.springai.controller;
 
+import com.bogdanmierloiu.springai.dto.UserDto;
 import com.bogdanmierloiu.springai.entity.User;
 import com.bogdanmierloiu.springai.repo.UserRepo;
+import com.bogdanmierloiu.springai.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,14 +18,11 @@ import java.util.Optional;
 @RequestMapping("api/profile")
 public class UserController {
 
-    private final UserRepo userRepo;
+    private final UserService userService;
 
     @GetMapping
-    public ResponseEntity<User> getUser() {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String emailOrAddress = principal.toString();
-        Optional<User> optionalByEmail = userRepo.findByEmail(emailOrAddress);
-        return optionalByEmail.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.ok(userRepo.findByAddress(emailOrAddress).orElseThrow()));
+    public ResponseEntity<UserDto> getUserProfile() {
+        return ResponseEntity.ok(userService.getUserProfile());
     }
 
 }

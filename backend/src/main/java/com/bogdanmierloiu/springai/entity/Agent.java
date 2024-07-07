@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -23,6 +24,9 @@ public class Agent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, unique = true)
+    private UUID uuid;
 
     @Column(nullable = false, unique = true)
     @Schema(description = "The name of the agent", example = "Magic Agent")
@@ -51,6 +55,11 @@ public class Agent {
             joinColumns = @JoinColumn(name = "agent_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<User> owners;
+
+    @PrePersist
+    public void prePersist() {
+        this.uuid = UUID.randomUUID();
+    }
 
     @Override
     public String toString() {

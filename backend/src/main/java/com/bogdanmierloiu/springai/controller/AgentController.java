@@ -6,10 +6,10 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/agents")
@@ -22,6 +22,18 @@ public class AgentController {
     @Validated
     public ResponseEntity<AgentDto> createAgent(@Valid @RequestBody AgentDto agent) {
         return ResponseEntity.ok(agentService.createAgent(agent));
+    }
+
+    @PatchMapping("/{agentUuid}/upload")
+    public ResponseEntity<String> handleFileUpload(
+            @PathVariable UUID agentUuid,
+            @RequestParam("file") MultipartFile file
+    ) {
+        if (file.isEmpty()) {
+            return ResponseEntity.badRequest().body("Please upload a file");
+        }
+        agentService.uploadFile(agentUuid, file);
+        return ResponseEntity.ok("File uploaded successfully");
     }
 
 
