@@ -52,18 +52,17 @@ public class Trait {
 
     @Override
     public String toString() {
-        return "Traits{" +
-                "collaboration='" + collaboration + '\'' +
-                ", resilience='" + resilience + '\'' +
-                ", innovation='" + innovation + '\'' +
-                ", communication='" + communication + '\'' +
-                ", patience='" + patience + '\'' +
-                ", adaptability='" + adaptability + '\'' +
-                ", attentionToDetail='" + attentionToDetail + '\'' +
-                ", confidence='" + confidence + '\'' +
-                ", reliability='" + reliability + '\'' +
-                ", empathy='" + empathy + '\'' +
-                '}';
+        return "Traits:" +
+                collaboration + ", " +
+                resilience + ", " +
+                innovation + ", " +
+                communication + ", " +
+                patience + ", " +
+                adaptability + ", " +
+                attentionToDetail + ", " +
+                confidence + ", " +
+                reliability + ", " +
+                empathy;
     }
 
     @Override

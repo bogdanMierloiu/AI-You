@@ -100,7 +100,7 @@ function Profile() {
               )}
                <div className="file-upload">
           <label>Upload File:</label>
-          <input type="file" onChange={handleFileUpload} accept=".pdf,.doc,.docx" />
+          <input type="file" onChange={handleFileUpload} accept=".pdf,.doc,.docx,.txt" />
         </div>
             </div>
             <button onClick={nextAgent}>Next</button>
