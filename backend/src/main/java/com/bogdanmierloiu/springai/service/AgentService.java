@@ -4,6 +4,7 @@ import com.bogdanmierloiu.springai.dto.agent.AgentDto;
 import com.bogdanmierloiu.springai.dto.agent.StoreRequest;
 import com.bogdanmierloiu.springai.dto.agent.TraitDto;
 import com.bogdanmierloiu.springai.entity.Agent;
+import com.bogdanmierloiu.springai.entity.OpenAiAssistant;
 import com.bogdanmierloiu.springai.entity.Trait;
 import com.bogdanmierloiu.springai.entity.User;
 import com.bogdanmierloiu.springai.mapper.AgentMapper;
@@ -31,7 +32,7 @@ public class AgentService {
     private final AgentRepo agentRepo;
     private final TraitRepo traitRepo;
     private final UserService userService;
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate;
 
     private static final String NOT_DEFINED = "not defined";
 
@@ -51,6 +52,11 @@ public class AgentService {
                 .build();
         return AgentMapper.mapToAgentDto(agentRepo.save(newAgent));
     }
+
+    public OpenAiAssistant createOpenAiAssistant(Agent agent){
+        return null;
+    }
+
 
     private String generateAgentName(User user) {
         if (user.getUsername().contains("@")) {

@@ -1,7 +1,6 @@
 package com.bogdanmierloiu.springai.service;
 
 import com.bogdanmierloiu.springai.dto.UserDto;
-import com.bogdanmierloiu.springai.entity.Agent;
 import com.bogdanmierloiu.springai.entity.User;
 import com.bogdanmierloiu.springai.mapper.UserMapper;
 import com.bogdanmierloiu.springai.repo.RoleRepo;
@@ -14,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 import java.util.Random;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor

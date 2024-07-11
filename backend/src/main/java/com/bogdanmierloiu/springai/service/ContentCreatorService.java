@@ -34,7 +34,7 @@ public class ContentCreatorService {
 
     private final OpenAiChatProperties openAiChatProperties;
 
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate;
     private final UserService userService;
     private final AgentRepo agentRepo;
 

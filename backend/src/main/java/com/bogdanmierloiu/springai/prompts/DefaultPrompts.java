@@ -34,5 +34,4 @@ public class DefaultPrompts {
                 promptRequest,
                 String.join("\n", similaritySearchResult));
     }
-
 }
